@@ -147,10 +147,10 @@ function GameController(
     cells.forEach((cell) => {
       cell.style.pointerEvents = "none";
     });
-
-    // Show the reset button
-    const resetButton = document.getElementById("reset-button");
-    resetButton.style.display = "block";
+    setTimeout(() => {
+      const popup = document.querySelector(".popup");
+      popup.style.display = "flex";
+    }, 800);
   };
 
   const resetGame = () => {
@@ -164,8 +164,8 @@ function GameController(
     playerTurnMessage(playerOne);
     const status = document.getElementById("game-status");
     status.textContent = "";
-    const resetButton = document.getElementById("reset-button");
-    resetButton.style.display = "none";
+    const popup = document.querySelector(".popup");
+    popup.style.display = "none";
   };
 
   return { playRound, resetGame };
