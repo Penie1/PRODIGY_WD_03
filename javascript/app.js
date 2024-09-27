@@ -121,7 +121,7 @@ function GameController(
       }
 
       switchPlayerTurn();
-      updateTurnMessage();
+      playerTurnMessage(getActivePlayer);
     }
   };
 
@@ -132,10 +132,10 @@ function GameController(
     cell.textContent = token;
   };
 
-  const updateTurnMessage = () => {
-    const playerTurn = document.getElementById("player-turn");
-    playerTurn.textContent = `${getActivePlayer().name}'s turn (${
-      getActivePlayer().token
+  const playerTurnMessage = (playerTurn) => {
+    const playerTurnHTML = document.getElementById("player-turn");
+    playerTurnHTML.textContent = `${playerTurn().name}'s turn (${
+      playerTurn().token
     })`;
   };
 
@@ -154,13 +154,14 @@ function GameController(
   };
 
   const resetGame = () => {
+    const playerOne = () => players[0];
     board.resetBoard();
     const cells = document.querySelectorAll(".cell");
     cells.forEach((cell) => {
       cell.textContent = "";
       cell.style.pointerEvents = "auto";
     });
-    updateTurnMessage();
+    playerTurnMessage(playerOne);
     const status = document.getElementById("game-status");
     status.textContent = "";
     const resetButton = document.getElementById("reset-button");
