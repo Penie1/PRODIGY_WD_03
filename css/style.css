@@ -35,3 +35,7 @@ body {
 .info {
   margin-top: 20px;
 }
+
+#reset-button {
+  display: none;
+}
